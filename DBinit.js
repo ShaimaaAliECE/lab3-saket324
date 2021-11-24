@@ -9,6 +9,32 @@ let conn = mysql.createConnection({
 
 conn.connect();
 
+//Availability Table
+conn.query(`CREATE TABLE Availability
+            (
+                Name varchar(100) NOT NULL PRIMARY KEY,
+                LastUpdate      timestamp,
+                TimesAvailable  json
+            )            
+            `
+            , (err,rows,fields) => {
+                if (err)
+                    console.log(err);
+                else
+                    console.log('Table Created');
+            }
+);
+
+//Dropping Availability Table
+conn.query(`DROP TABLE Availability`,
+            (err,rows,fields) => {
+                if(err)
+                    console.log(err);
+                else
+                    console.log('Table Dropped')
+            }
+        );
+
 conn.query(`INSERT INTO Availability values ("Admin",CURRENT_TIME(),'["08:00","09:00","10:00","11:00","12:00","13:00", "14:00", "15:00", "16:00", "17:00"]')`
             , (err,rows,fields) => {
                 if (err)
