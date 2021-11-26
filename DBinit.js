@@ -10,6 +10,7 @@ let conn = mysql.createConnection({
 conn.connect();
 
 //Availability Table
+/*
 conn.query(`CREATE TABLE Availability
             (
                 Name varchar(100) NOT NULL PRIMARY KEY,
@@ -18,13 +19,16 @@ conn.query(`CREATE TABLE Availability
             )            
             `
             , (err,rows,fields) => {
-                if (err)
+                if (err){
                     console.log(err);
-                else
+                    console.log("error in first query");
+                }else{
                     console.log('Table Created');
+                    console.log(rows);
+                    console.log(fields);
             }
-);
-
+        });
+/*
 //Dropping Availability Table
 conn.query(`DROP TABLE Availability`,
             (err,rows,fields) => {
@@ -33,7 +37,7 @@ conn.query(`DROP TABLE Availability`,
                 else
                     console.log('Table Dropped')
             }
-        );
+        );*/
 
 conn.query(`INSERT INTO Availability values ("Admin",CURRENT_TIME(),'["08:00","09:00","10:00","11:00","12:00","13:00", "14:00", "15:00", "16:00", "17:00"]')`
             , (err,rows,fields) => {
